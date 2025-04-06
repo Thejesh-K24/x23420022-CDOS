@@ -1,0 +1,57 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body class="goto-here">
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+            <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">Contact</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section align="center" class="ftco-section contact-section bg-light">
+      <div class="container">
+      	<div class="row d-flex mb-5 contact-info">
+          <div class="w-100"></div>
+        </div>
+            {% if msg %}
+              <h4 style="color: green;">{{msg}}</h4>
+            {% endif %}
+        <div class="row block-9">
+          <div class="col-md order-md-last d-flex">
+            
+            <form action="{% url 'contact' %}" method="POST" class="bg-white p-5 contact-form" style="border-radius: 5%;">
+              {% csrf_token %}
+              <h1 style="font-family: 'Kalam: px;', cursive !important;"><b>Contact</b></h1>
+              <div class="form-group">
+                <input type="text" required name="name" class="form-control" placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <input type="email" required name="email" class="form-control" placeholder="Your Email">
+              </div>
+              <div class="form-group">
+                <input type="tel" required name="mobile" class="form-control" placeholder="Mobile" maxlength="10">
+              </div>
+              <div class="form-group">
+                <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+
+        </div>
+      </div>
+      </div>
+    </section>
+  </body>
+</html>
+{% endblock %}

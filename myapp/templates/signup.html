@@ -1,0 +1,98 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body class="goto-here">
+  <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+          <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">Sign Up</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section align="center" class="ftco-section contact-section bg-light">
+    <div class="container">
+      <div class="row d-flex mb-5 contact-info">
+        <div class="w-100"></div>
+      </div>
+      {% if msg %}
+      <h4 style="color: green;">{{msg}}</h4>
+      {% endif %}
+      <div class="row block-9">
+        <div class="col-md order-md-last d-flex">
+          <form action="{% url 'signup' %}" method="POST" class="bg-white p-5 contact-form" style="border-radius: 5%;">
+            {% csrf_token %}
+            <h1 style="font-family: 'Kalam: px;', cursive !important;"><b>Sign Up</b></h1>
+            <div class="form-group">
+              <label name="usertype" required id="" style="color: gray;">Select User Type</label><br>
+              <input type="radio" checked name="usertype" value="user">User
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="usertype" value="Seller">Seller
+            </div>
+            <div class="form-group">
+              <input type="text" required name="fname" class="form-control" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <input type="text" required required name="lname" class="form-control" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+              <input type="email" required id="c_email" name="email" class="form-control" placeholder="Email">
+              <span id="email_error" style="color: red;"></span>
+            </div>
+            <div class="form-group">
+              <input type="tel" required name="mobile" class="form-control" placeholder="Mobile" maxlength="10">
+            </div>
+            <div class="form-group">
+              <textarea name="address" id="" cols="30" rows="7" class="form-control" placeholder="Address"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="password" required name="password" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            </div>
+            <div class="form-group">
+              <input type="password" required name="cpassword" class="form-control" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            </div>
+            <div class="form-group">
+              <a><input type="submit" value="Sign Up" class="btn btn-primary py-3 px-5"></a>
+            </div>
+            <div>
+              <ul align="right">
+                <a href="{% url 'login' %}">Login</a>
+              </ul>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    $("#c_email").change(function(){
+      var email=$(this).val();
+      
+      $.ajax({
+        url: '/ajax/validate_email/',
+        data: {
+          'email': email
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            document.getElementById("email_error").innerHTML="This Email Id Is Already Registerd";
+          }else{
+            
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+{% endblock %}

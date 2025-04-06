@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body class="goto-here">
+
+
+    <!-- END nav -->
+
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+            <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">Product Details</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6 mb-5 ftco-animate">
+    				<a href="{{product.product_image.url}}" class="image-popup"><style>img{ width: 300px;margin-top: 50px;}
+					  </style><img src="{{product.product_image.url}}" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+					{% if wishlist_flag %}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="{% url 'remove_from_whishlist' pk=product.pk %}" class="ion-ios-close" style="font-size:48px;"></a>
+					{% else %}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="{% url 'add_to_whishlist' pk=product.pk %}" class="icon-heart-o"></a>
+					{% endif %}
+    				<h3 style="font-family: 'Kalam: px;', cursive !important;"><b>{{product.product_name}}</b></h3><br>
+    				<p class="price"><span>Rs. {{product.product_price}}</span><br><span>{{product.product_weight}}</span></p>
+    				<p>{{product.product_desc}}</p>
+						<div class="row mt-4">
+							<div class="col-md-6">
+								<div class="form-group d-flex">
+		              				<div class="select-wrap">
+	                  					<div class="icon"></div>
+	                				</div>
+		            			</div>
+							</div>
+          				</div>
+					<p>
+						{% if request.session.email %}
+							{% if cart_flag %}    
+							<a href="{% url 'remove_from_cart' pk=product.pk %}" class="btn btn-black py-3 px-5">Remove from Cart</a>
+							<a href="{% url 'buy_now' pk=product.pk %}" class="btn btn-black py-3 px-5">Buy Now</a>
+							{% else %}
+							<a href="{% url 'add_to_cart' pk=product.pk %}" class="btn btn-black py-3 px-5">Add to Cart</a>
+							<a href="{% url 'buy_now' pk=product.pk %}" class="btn btn-black py-3 px-5">Buy Now</a>
+							{% endif %}											
+						{% else %}
+							<a href="{% url 'login' %}" class="btn btn-black py-3 px-5">Login</a>
+						{% endif %}
+						
+					</p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+  </body>
+</html>
+{% endblock %} 

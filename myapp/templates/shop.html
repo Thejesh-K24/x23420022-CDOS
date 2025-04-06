@@ -1,0 +1,77 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body class="goto-here">
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+            <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">Products</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-md-10 mb-5 text-center">
+    				<ul class="product-category" align="center">
+    					<li><a href="{% url 'shop' %}" class="{% if request.resolver_match.url_name == 'shop' %}active{% endif %}">All</a></li>
+    					<li><a href="{% url 'collection_vegetables' %}" class="{% if request.resolver_match.url_name == 'collection_vegetables' %}active{% endif %}">Vegetables</a></li>
+    					<li><a href="{% url 'collection_fruits' %}" class="{% if request.resolver_match.url_name == 'collection_fruits' %}active{% endif %}">Fruits</a></li>
+    					<li><a href="{% url 'collection_juice' %}" class="{% if request.resolver_match.url_name == 'collection_juice' %}active{% endif %}">Juice</a></li>
+    					<li><a href="{% url 'collection_dried' %}" class="{% if request.resolver_match.url_name == 'collection_dried' %}active{% endif %}">Dried</a></li>
+    				</ul>
+    			</div>
+    		</div>
+    		<div class="row">
+    			{% for i in products %}
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product" style="border-radius: 6%;">
+						{% if request.session.email %}
+    					<a href="{% url 'product_details' pk=i.pk %}" class="img-prod"><img class="img-fluid" src="{{i.product_image.url}}" alt="Colorlib Template" style="width: 200px; height: 200px; margin: 25px;">
+    						<div class="overlay"></div></a>
+						{% else %}
+    					<a href="{% url 'login' %}" class="img-prod"><img class="img-fluid" src="{{i.product_image.url}}" alt="Colorlib Template" style="width: 200px; height: 200px; margin: 25px;">
+    						<div class="overlay"></div></a>
+						{% endif %}
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3 style="font-family: 'Kalam: px;', cursive !important;"><a href="#">{{i.product_name}}</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>Rs. {{i.product_price}}</span></p>
+									<p class="price"><span>{{i.product_weight}}</span></p>
+		    					</div>
+	    					</div>
+    						<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							{% if request.session.email %}
+	    							<a href="{% url 'add_to_cart' pk=i.pk %}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span></a>
+									<a href="{% url 'add_to_whishlist' pk=i.pk %}" class="heart d-flex justify-content-center align-items-center ">
+										<span><i class="ion-ios-heart"></i></span></a>
+									{% else %}
+									<a href="{% url 'login' %}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span></a>
+									<a href="{% url 'login' %}" class="heart d-flex justify-content-center align-items-center">
+										<span><i class="ion-ios-heart"></i></span></a>
+									{% endif %}	
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+				{% endfor %}
+    		</div>
+    	</div>
+    </section>
+	
+  </body>
+</html>
+{% endblock %}

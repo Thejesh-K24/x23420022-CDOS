@@ -1,0 +1,175 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body class="goto-here">
+
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+            <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">Billing Details</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          		<div class="col-xl-7 ftco-animate">
+					<form action="{% url 'checkout' %}" enctype="multipart/form-data" method="POST" class="bg-white contact-form">
+					{% csrf_token %}
+					<h3 class="mb-4 billing-heading" style="font-family: 'Kalam: px;', cursive !important;" align="center">Billing Details</h3>
+	          		<div class="row align-items-end" style="color: black;">
+	          			<div class="col-md-6">
+	                		<div class="form-group">
+	                			<label for="firstname">Firt Name</label>
+	                  			<input type="text" required name="fname" class="form-control" placeholder="">
+	                		</div>
+	              		</div>
+	              		<div class="col-md-6">
+	                		<div class="form-group">
+	                			<label for="lastname">Last Name</label>
+	                  			<input type="text" required name="lname" class="form-control" placeholder="">
+	                		</div>
+                		</div>
+                		
+		            	<div class="col-md-12">
+		            		<div class="form-group">
+		            			<label for="country">State / Country</label>
+								
+		                  			<div class="icon"></div>
+		                  				<select class="form-control" name="state_country">
+											<option value="">Gujarat</option>
+											<option value="">Panjab</option>
+											<option value="">Rajasthan</option>
+											<option value="">Kerala</option>
+		                  				</select>
+		                		
+		            		</div>
+		            	</div>
+		            	<div class="w-100"></div>
+		            	<div class="col-md-6">
+		            		<div class="form-group">
+	                			<label for="streetaddress">Street Address</label>
+	                  			<input type="text" required name="street_address1" class="form-control" placeholder="House number and street name">
+	                		</div>
+		            	</div>
+		            	<div class="col-md-6">
+		            		<div class="form-group">
+	                  		<input type="text" name="street_address2" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+	                	</div>
+		            	</div>
+		            	<div class="w-100"></div>
+		            	<div class="col-md-6">
+		            		<div class="form-group">
+	                			<label for="towncity">Town / City</label>
+	                  			<input type="text" required name="city" class="form-control" placeholder="">
+	                		</div>
+		            	</div>
+		            	<div class="col-md-6">
+		            		<div class="form-group">
+		            			<label for="postcodezip">Postcode / ZIP *</label>
+	                  			<input type="text" required name="postcode" class="form-control" placeholder="">
+	                		</div>
+		            	</div>
+		            	<div class="w-100"></div>
+		            	<div class="col-md-6">
+	                		<div class="form-group">
+	                			<label for="phone">Phone</label>
+	                  			<input type="text" required name="mobile" class="form-control" placeholder="">
+	                		</div>
+	              		</div>
+	              		<div class="col-md-6">
+	                		<div class="form-group">
+	                			<label for="emailaddress">Email Address</label>
+	                  			<input type="text" required name="email" class="form-control" placeholder="">
+	                		</div>
+                		</div>
+                		<div class="w-100"></div>
+	            	</div>
+				</form><!-- END -->
+				</div>
+					<div class="col-xl-5">
+	          			<div class="row mt-5 pt-3">
+	          				<div class="col-md-12 d-flex mb-5">
+	          					<div class="cart-detail cart-total p-3 p-md-4">
+	          						<h3 class="billing-heading mb-4" style="font-family: 'Kalam: px;', cursive !important;">Total</h3>
+	          						<p class="d-flex">
+										<span>Subtotal</span>
+										<span>Rs. {{product.product_price}}</span>
+									</p>
+		    						<p class="d-flex">
+		    							<span>Delivery</span>
+		    							<span>Free</span>
+		    						</p>
+		    						<p class="d-flex">
+		    							<span>Discount</span>
+		    							<span>Rs. 0.00</span>
+		    						</p>
+		    						<hr>
+									<p class="d-flex total-price">
+										<span>Total</span>
+										<span>Rs. {{product.product_price}}</span>
+									</p>
+								</div>
+	          				</div>
+							<div>
+								<form method="post" action="{% url 'pay' %}">
+								{% csrf_token %}
+								<input type="hidden" name="amount" value="{{product.product_price}}">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn btn-primary py-3 px-4" style="color:black;" onclick="window.location='checkout.html'">Place an Order</button>
+								</form>
+							</div>
+	          			</div>
+          			</div>					
+        		</div>
+      		</div>
+    </section> <!-- .section -->
+
+  <script>
+		$(document).ready(function(){
+
+		var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+		        
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		            
+		            $('#quantity').val(quantity + 1);
+
+		          
+		            // Increment
+		        
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		      
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+		    
+		});
+	</script>
+    
+  </body>
+</html>
+{% endblock %}

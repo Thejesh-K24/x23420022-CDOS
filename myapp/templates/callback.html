@@ -1,0 +1,35 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>Callback</title>
+</head>
+<body>
+    <h2 align="center" style="font-family: 'Kalam: px;', cursive !important;">Callback Messsage</h2>                    <br>
+    <h3 align="center" style="font-family: 'Kalam: px;', cursive !important;"> Checksum Verification: {{ message }} </h3> <br>
+    <h6 align="center" style="font-family: 'Kalam: px;', cursive !important;">
+    MID: {{ MID }}                                  <br>
+    TXNID: {{ TXNID }}                              <br>
+    ORDERID: {{ ORDERID }}                          <br>
+    BANKTXNID: {{ BANKTXNID }}                      <br>
+    TXNAMOUNT: {{ TXNAMOUNT }}                      <br>
+    CURRENCY: {{ CURRENCY }}                        <br>
+    </h6>
+    <h3 align="center" style="font-family: 'Kalam: px;', cursive !important;"> STATUS: {{ STATUS }} </h3>                 <br>
+    <h6 align="center" style="font-family: 'Kalam: px;', cursive !important;">
+    RESPCODE: {{ RESPCODE }}                        <br>
+    RESPMSG: {{ RESPMSG }}                          <br>
+    TXNDATE: {{ TXNDATE }}                          <br>
+    GATEWAYNAME: {{ GATEWAYNAME }}                  <br>
+    BANKNAME: {{ BANKNAME }}                        <br>
+    BIN_NAME: {{ BIN_NAME }}                        <br>
+    PAYMENTMODE: {{ PAYMENTMODE }}                  <br>
+    CHECKSUMHASH: {{ CHECKSUMHASH }}                <br><br>
+    </h6>
+    <h2 align="center"><a href="{% url 'index' %}" style="font-family: 'Kalam: px;', cursive !important;">Back To Home</a></h2>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+</body>
+</html>
+{% endblock %}

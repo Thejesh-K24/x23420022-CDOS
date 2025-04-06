@@ -1,0 +1,138 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+    <section id="home-section" class="hero">
+		  <div class="home-slider owl-carousel">
+
+			<div class="slider-item" style="background-image: url({% static 'images/bg_1.jpg' %});">
+				<div class="overlay"></div>
+			  <div class="container">
+				<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+  
+				  <div class="col-sm-12 ftco-animate text-center">
+					<h1 class="mb-2" style="font-family: 'Kalam: px;', cursive !important;">Fresh &amp; Organic Foods</h1>
+					<h2 class="subheading mb-4" style="font-family: 'Kalam: px;', cursive !important;">We deliver organic vegetables &amp; fruits</h2>
+					<p><a href="{% url 'shop' %}" class="btn btn-primary">View Details</a></p>
+				  </div>
+  
+				</div>
+			  </div>
+			</div>
+
+	      <div class="slider-item" style="background-image: url({% static 'images/bg_2.jpg' %});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 class="mb-2" style="font-family: 'Kalam: px;', cursive !important;">We serve Fresh Vegestables &amp; Fruits</h1>
+	              <h2 class="subheading mb-4" style="font-family: 'Kalam: px;', cursive !important;">We deliver organic vegetables &amp; fruits</h2>
+	              <p><a href="{% url 'shop' %}" class="btn btn-primary">View Details</a></p>
+	            </div>
+
+	          </div>
+	        </div>
+	      </div>
+
+	    </div>
+    </section>
+
+    <section class="ftco-section" style="font-family: 'Kalam: px;', cursive !important;">
+			<div class="container">
+				<div class="row no-gutters ftco-services">
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-shipped"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading" style="font-family: 'Kalam: px;', cursive !important;">Free Shipping</h3>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-diet"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading" style="font-family: 'Kalam: px;', cursive !important;">Always Fresh</h3>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-award"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading" style="font-family: 'Kalam: px;', cursive !important;">Superior Quality</h3>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-customer-service"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading" style="font-family: 'Kalam: px;', cursive !important;">Support</h3>
+              </div>
+            </div>      
+          </div>
+        </div>
+			</div>
+		</section>
+
+		<section class="ftco-section ftco-category ftco-no-pt">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-6 order-md-last align-items-stretch d-flex">
+								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url({% static 'images/category.jpg' %}); border-radius: 7%;">
+									<div class="text text-center">
+										<h2>Vegetables</h2>
+										<p>Protect the health of every home</p>
+										<p><a href="{% url 'shop' %}" class="btn btn-primary">Shop now</a></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="border-radius: 7%; background-image: url({% static 'images/category-1.jpg' %});">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0" style="font-family: 'Kalam: px;', cursive !important;"><a href="{% url 'collection_fruits' %}">Fruits</a></h2>
+									</div>
+								</div>
+								<div class="category-wrap ftco-animate img d-flex align-items-end" style="border-radius: 7%; background-image: url({% static 'images/category-2.jpg' %});">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0" style="font-family: 'Kalam: px;', cursive !important;"><a href="{% url 'collection_vegetables' %}">Vegetables</a></h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="border-radius: 7%; background-image: url({% static 'images/category-3.jpg' %});">
+							<div class="text px-3 py-1">
+								<h2 class="mb-0" style="font-family: 'Kalam: px;', cursive !important;"><a href="{% url 'collection_juice' %}">Juices</a></h2>
+							</div>		
+						</div>
+						<div class="category-wrap ftco-animate img d-flex align-items-end" style="border-radius: 7%; background-image: url({% static 'images/category-4.jpg' %});">
+							<div class="text px-3 py-1">
+								<h2 class="mb-0" style="font-family: 'Kalam: px;', cursive !important; "><a href="{% url 'collection_dried' %}">Dried</a></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <hr>
+</html>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body class="goto-here">
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span></p>
+            <h1 class="mb-0 bread" style="font-family: 'Kalam: px;', cursive !important;">My Wishlist</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+				{% if whishlists %}
+    			{% for i in whishlists %}
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product" style="border-radius: 6%;">
+    					<a href="{% url 'product_details' pk=i.product.pk %}" class="img-prod"><img class="img-fluid" src="{{i.product.product_image.url}}" alt="Colorlib Template" style="width: 200px; height: 200px; margin: 25px;">
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3 style="font-family: 'Kalam: px;', cursive !important;"><a href="#">{{i.product.product_name}}</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>Rs. {{i.product.product_price}}</span></p>
+									<p class="price"><span>{{i.product.product_weight}}</span></p>
+		    					</div>
+	    					</div>
+							<a href="{% url 'remove_from_whishlist' pk=i.product.pk %}" class="ion-ios-close" style="font-size:40px;"></a>
+    					</div>		
+    				</div>		
+    			</div>
+				{% endfor %}
+				{% else %}
+				<h2 style="font-family: 'Kalam: px;', cursive !important;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					No Products In Wishlist
+				</h2>
+				{% endif %}
+    		</div>
+    	</div>
+    </section>
+	
+  </body>
+</html>
+{% endblock %}
