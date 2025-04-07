@@ -3,6 +3,8 @@ from unicodedata import name
 from django.urls import path
 from django.views import View
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.index,name='index'),
@@ -36,4 +38,7 @@ urlpatterns = [
     path('ajax/validate_email/',views.validate_signup,name='validate_email'),
     path('buy_now/<int:pk>/',views.buy_now,name='buy_now'),
     path('buy_all_now/',views.buy_all_now,name='buy_all_now'),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
